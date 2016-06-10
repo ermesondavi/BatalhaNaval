@@ -1,36 +1,65 @@
 --Campos
+
 *Imprimir campos V
-*Trocar letras por número V 
+
+*Trocar letras por numero V
+
 *Corrigir tracinhos
 
+
+
 --README
+
 *Semana 1 V
+
 *Semana 2 
 *
 
+
+
 --Funcionalidades
-*Passagem por referência V
+
+*Passagem por referencia V
+
 *Alocar navios
+
 *Simular jogadas
 
---[modularização]
-*Modularização inicial V
-*
-*
+
+
+--Modularizacao
+*Modularizacao inicial V
+
+
+--
 
 Menu
+
 *Fazer menu com layout legal V
-*Arrumar Créditos
+
+*Arrumar Creditos
+
 *
 
 Extras
-*Começar a utilizar o git
+
+*Comecar a utilizar o git
+
 *Exportar p/ Github
-*Mudanças de cor e som
-*Créditos num arquivo
+
+*Mudancas de cor e som
+
+*Creditos num arquivo
+
+
 
 Doing
-passar número do jogador V
+
+passar numero do jogador V
+
 status do tabuleiro V
-uma função só para imprimir números X
+
+uma funcao so para imprimir numeros X
+
 struct para reconhecer coordenadas
+testes
