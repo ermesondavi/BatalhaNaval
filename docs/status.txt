@@ -1,11 +1,10 @@
 --Campos
-
 *Imprimir campos V
+*Trocar letras por numero V
 *Trocar letras por numero V
 *Corrigir tracinhos
 
 --README
-
 *Semana 1 V
 *Semana 2 
 *
