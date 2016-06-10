@@ -36,3 +36,11 @@ Doing
 *struct para reconhecer coordenadas
 *struct para reconhecer navios
 *testes
+
+[Doing]ALOCARNAVIOS
+*adicionar só x e n y (adicionando x) [cima p/baixo] V
+*ler x e y com + 1 (ta comecando no zero)
+*aumentar distancia entre navios
+*fazer subrotinas e modularizacao
+*mudar opcao direcao das posicoes
+[git]criar outro branch (utilizar p/ alocarnavio)
