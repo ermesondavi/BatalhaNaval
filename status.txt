@@ -1,0 +1,36 @@
+--Campos
+*Imprimir campos V
+*Trocar letras por número V 
+*Corrigir tracinhos
+
+--README
+*Semana 1 V
+*Semana 2 
+*
+
+--Funcionalidades
+*Passagem por referência V
+*Alocar navios
+*Simular jogadas
+
+--[modularização]
+*Modularização inicial V
+*
+*
+
+Menu
+*Fazer menu com layout legal V
+*Arrumar Créditos
+*
+
+Extras
+*Começar a utilizar o git
+*Exportar p/ Github
+*Mudanças de cor e som
+*Créditos num arquivo
+
+Doing
+passar número do jogador V
+status do tabuleiro V
+uma função só para imprimir números X
+struct para reconhecer coordenadas
