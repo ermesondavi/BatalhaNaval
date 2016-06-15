@@ -4,7 +4,9 @@
 #include <string.h>
 #include "funcoes.h"
 
-void aloca_ale(int jogador2[][TAM])
+
+//===============================================FUNCOES DE ALOCACAO============================================================//
+void aloca_ale(int jogador2[][TAM]) //aloca navios aleatoriamente
 {
     srand(time(NULL));
     int i, posx, posy, randomico,  resultado, tamanho = 1;
@@ -15,11 +17,11 @@ void aloca_ale(int jogador2[][TAM])
 
         do
         {
-            posx = rand() % 15;
+            posx = rand() % 15; //sorteia as posicoes dos navios
             posy = rand() % 15;
-            randomico = rand() % 4;
+            randomico = rand() % 4; //sorteia a direcao dos navios
 
-            switch(i) //muda tamanho
+            switch(i) //muda tamanho dos navios
             {
                 case 1: tamanho = 1; break;
                 case 5: tamanho = 2; break;
@@ -27,7 +29,7 @@ void aloca_ale(int jogador2[][TAM])
                 case 10: tamanho = 4; break;
             }
 
-            switch (randomico)
+            switch (randomico) //muda as direcoes dos navios
             {
                 case 0: direcao = 'N' ; break;
                 case 1: direcao = 'S' ; break;
@@ -37,14 +39,14 @@ void aloca_ale(int jogador2[][TAM])
 
         }while(posx < 0 && posx > TAM-1 || posy < 0 && posy > TAM-1 || direcao != 'N' && direcao != 'S' && direcao != 'L' && direcao != 'O');
 
-        resultado = aloca_navio(jogador2, tamanho, posx, posy, direcao);
+        resultado = aloca_navio(jogador2, tamanho, posx, posy, direcao); //chama funcao para colocar os navios nos seus lugares
 
-        if(resultado != 0)
+        if(resultado != 0) //se nao deu certo, ele tente alocar novamente
                 i--;
     }
 }
 
-void aloca_pedido(int jogador1[][TAM])
+void aloca_pedido(int jogador1[][TAM]) //aloca navios conforme desejo do jogador
 {
     srand(time(NULL));
     int i, posx, posy, randomico,  resultado, tamanho = 1;
@@ -52,8 +54,8 @@ void aloca_pedido(int jogador1[][TAM])
 
     for(i = 1; i < 11; i++)
     {
-        //muda nomes e tamanho
-        switch(i)
+
+        switch(i) //muda nomes e tamanho dos navios
         {
             case 1: strcpy(nome, "Submarino"), tamanho = 1; break;
             case 5: strcpy(nome, "Corveta"), tamanho = 2; break;
@@ -61,22 +63,22 @@ void aloca_pedido(int jogador1[][TAM])
             case 10: strcpy(nome, "Porta-Aviao"), tamanho = 4; break;
         }
 
-        do
+        do //escolhe posicao para os navios
         {
-            printf("Escolha posicao para %s %d\n", nome, i);
+            printf("Escolha posicao (x y) entre 0 - 14 para %s %d\n", nome, i);
             scanf("%d %d", &posx, &posy);
-            printf("Escolha uma direcao\n");
+            printf("Escolha uma direcao(N, S, L ou O)\n");
             scanf(" %c", &direcao);
 
         } while (posx < 0 && posx > TAM-1 || posy < 0 && posy > TAM-1 || direcao != 'N' && direcao != 'S' && direcao != 'L' && direcao != 'O');
 
-        resultado = aloca_navio(jogador1, tamanho, posx, posy, direcao);
+        resultado = aloca_navio(jogador1, tamanho, posx, posy, direcao); //chama funcao para colocar os navios nos seus lugares
 
-        if(resultado == 0)
-            printf("Deu certo %d\n", i);
+        if(resultado == 0) //se nao deu certo, ele tente alocar novamente
+            printf("A alocacao foi bem sucedida!\n\n");
         else
         {
-            printf("Digite algo valido%d\n", i);
+            printf("A alocacao foi mal sucedida! Digite algo valido\n\n");
             i--;
         }
     }
@@ -87,10 +89,10 @@ int aloca_navio(int jogador1[][TAM], int tam, int x, int y, char direcao) //aloc
 {
     int i, j, ok, modx, mody, origx, origy;
 
-    origx = x; //x = posx
-    origy = y; //y = posy
+    origx = x;
+    origy = y;
 
-    switch (direcao)
+    switch (direcao) //seta as variaveis conforme a direcao escolhida
     {
         case 'N': mody = 0; modx = -1; break;
         case 'S': mody = 0; modx = 1; break;
@@ -123,7 +125,9 @@ int aloca_navio(int jogador1[][TAM], int tam, int x, int y, char direcao) //aloc
     return ok;
 
 }
+//===============================================FUNCOES DE ALOCACAO============================================================//
 
+//===============================================FUNCOES DE IMPRESSAO============================================================//
 void imprimelinha() //imprime as linhas no começo ou fim do tabuleiro
 {
 	int i;
@@ -154,14 +158,14 @@ void imprimetabuleiro(int jogador1[][TAM], int jogador2[][TAM]) //imprime o tabu
 
 	for(i = 0; i < TAM; i++) //percorre um caminho 15X15
 	{
-		printf("%02d ", i); //imprime a númeração ao lado do tabuleiro
+		printf("%02d ", i); //imprime a numeracao ao lado do tabuleiro
 
-		printf("| "); //imprime traço no inicio da linha
+		printf("| "); //imprime traco no inicio da linha
 
 		for(j = 0; j < TAM; j++) //imprime os elementos do tabuleiro
 			printf(" %d ", jogador1[i][j]);
 
-		printf("|\n"); //imprime traço no final da linha
+		printf("|\n"); //imprime traco no final da linha
 	}
 
 	imprimelinha();
@@ -177,51 +181,54 @@ void imprimetabuleiro(int jogador1[][TAM], int jogador2[][TAM]) //imprime o tabu
 
 	for(i = 0; i < TAM; i++) //percorre um caminho 15X15
 	{
-		printf("%02d ", i); //imprime a númeração ao lado do tabuleiro
+		printf("%02d ", i); //imprime a numeracao ao lado do tabuleiro
 
-		printf("| "); //imprime traço no inicio da linha
+		printf("| "); //imprime traco no inicio da linha
 
 		for(j = 0; j < TAM; j++) //imprime os elementos do tabuleiro
 			printf(" %d ", jogador2[i][j]);
 
-		printf("|\n"); //imprime traço no final da linha
+		printf("|\n"); //imprime traco no final da linha
 	}
 
 	imprimelinha();
 
 }
+//===============================================FUNCOES DE IMPRESSAO============================================================//
 
 void creditos() //creditos do jogo
 {
 	printf("**Feito por Ermeson Davi**\n\n");
 }
 
-int tiro_jogador(int jogador1v[][TAM], int jogador2v [][TAM], int jogador2[][TAM], int acertou)
+
+//================================================FUNCOES DOS TIROS=============================================================//
+void tiro_jogador(int jogador1v[][TAM], int jogador2v [][TAM], int jogador2[][TAM], int *ptr_acertou)
 {
     int tirox, tiroy;
     int contador1, contador2;
     contador1 = contador2 = 20;
 
 
-    printf("Escolha uma coordenada\n");
+    printf("Onde voce quer atirar? (x y)\n");
     scanf("%d %d", &tirox, &tiroy);
 
 
     if(tirox < 0 || tirox > TAM-1 || tiroy < 0 || tiroy > TAM-1) //testa se as coordenadas sao validas
     {
-        acertou = 1;
-        printf("Escolha coordenada valida\n\n");
+        *ptr_acertou = 1;
+        printf("Escolha coordenada valida!\n\n");
     }
 
     else if(jogador2v[tirox][tiroy] == 2 || jogador2v[tirox][tiroy] == 1) //testa se ja atirou ou se tem barco neste local
     {
-        acertou = 1;
-        printf("Atire onde voce ainda nao atirou\n\n");
+        *ptr_acertou = 1;
+        printf("Dica: Atire onde voce ainda nao atirou!\n\n");
     }
 
     else if(jogador2[tirox][tiroy] == 1) //coloca tiro no canto certo
     {
-        acertou = 1;
+        *ptr_acertou = 1;
         jogador2v[tirox][tiroy] = 1;
         imprimetabuleiro(jogador1v, jogador2v);
         printf("Voce acertou! Jogue novamente\n\n");
@@ -231,17 +238,17 @@ int tiro_jogador(int jogador1v[][TAM], int jogador2v [][TAM], int jogador2[][TAM
 
     else //passa a vez para IA
     {
-        acertou = 0;
+        *ptr_acertou = 0;
         jogador2v[tirox][tiroy] = 2;
         imprimetabuleiro(jogador1v, jogador2v);
-        printf("Voce errou!\n\n");
+        printf("Voce errou! Agora eh a vez do computador!\n\n");
         system("pause");
     }
 
 }
 
 
-int tiro_IA(int jogador1v[][TAM], int jogador2v [][TAM], int jogador1[][TAM], int acertou)
+void tiro_IA(int jogador1v[][TAM], int jogador2v [][TAM], int jogador1[][TAM], int *ptr_acertou)
 {
     int tirox, tiroy;
     int contador1, contador2;
@@ -251,15 +258,15 @@ int tiro_IA(int jogador1v[][TAM], int jogador2v [][TAM], int jogador1[][TAM], in
     tiroy = rand() % 15;
 
     if(tirox < 0 || tirox > TAM-1 || tiroy < 0 || tiroy > TAM-1) //testa se as coordenadas sao validas
-        acertou = 1;
+        *ptr_acertou = 1;
 
     else if(jogador1v[tirox][tiroy] == 2 || jogador1v[tirox][tiroy] == 1) //testa se ja atirou ou se tem barco neste local
-        acertou = 1;
+        *ptr_acertou = 1;
 
 
     else if(jogador1[tirox][tiroy] == 1)
     {
-        acertou = 1;
+        *ptr_acertou = 1;
         jogador1v[tirox][tiroy] = 1;
         imprimetabuleiro(jogador1v, jogador2v);
         printf("O computador acertou!\n\n");
@@ -269,14 +276,13 @@ int tiro_IA(int jogador1v[][TAM], int jogador2v [][TAM], int jogador1[][TAM], in
 
     else
     {
-        acertou = 0;
+        *ptr_acertou = 0;
         jogador1v[tirox][tiroy] = 2;
         imprimetabuleiro(jogador1v, jogador2v);
         printf("O computador errou!\n\n");
         system("pause");
     }
 
-    return acertou;
 }
 
 void conta_navios(int jogador1v[][TAM], int jogador2v[][TAM], int contador1, int contador2)
@@ -307,9 +313,10 @@ void conta_navios(int jogador1v[][TAM], int jogador2v[][TAM], int contador1, int
 
     if(contador2 <= 0)
     {
-        printf("Jogador 1 ganhou!\n\n");
+        printf("Voce ganhou!\n\n");
         system("pause");
         exit(0);
     }
 
 }
+//================================================FUNCOES DOS TIROS=============================================================//

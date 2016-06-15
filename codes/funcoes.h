@@ -8,6 +8,6 @@ void imprimelinha(); //imprime as linhas no começo ou fim do tabuleiro
 void imprimenum(); //imprime numeros no inicio do tabuleiro
 void imprimetabuleiro(int jogador1[][TAM], int jogador2[][TAM]); //imprime o tabuleiro dos 2 jogadores
 void creditos(); //creditos do jogo
-int tiro_IA(int jogador1v[][TAM], int jogador2v [][TAM], int jogador1[][TAM], int acertou); //tiros da IA
-int tiro_jogador(int jogador1v[][TAM], int jogador2v [][TAM], int jogador2[][TAM], int acertou); //tiros do Jogador
+void tiro_IA(int jogador1v[][TAM], int jogador2v [][TAM], int jogador1[][TAM], int *ptr_acertou); //tiros da IA
+void tiro_jogador(int jogador1v[][TAM], int jogador2v [][TAM], int jogador2[][TAM], int *ptr_acertou); //tiros do Jogador
 void conta_navios(int jogador1v[][TAM], int jogador2v[][TAM], int contador1, int contador2); //conta os navios p/ condicao de parada
