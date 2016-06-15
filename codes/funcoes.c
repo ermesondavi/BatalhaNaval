@@ -37,6 +37,7 @@ int aloca_navio(int jogador1[][TAM], int tam, int x, int y, char direcao) //aloc
             origy+=mody;
         }
     }
+
     return ok;
 
 }
@@ -111,4 +112,42 @@ void imprimetabuleiro(int jogador1[][TAM], int jogador2[][TAM], int id1, int id2
 void creditos() //creditos do jogo
 {
 	printf("**Feito por Ermeson Davi**\n\n");
+}
+
+
+void conta_navios(int jogador1v[][TAM], int jogador2v[][TAM], int contador1, int contador2)
+{
+    int i, j;
+    //*ptr_contador1 = *ptr_contador2 = 20; printf("%d ", jogador2v[i][j]),
+
+    for(i = 0; i < TAM; i++)
+    {
+        for(j = 0; j < TAM; j++)
+        {
+            if (jogador1v[i][j] == 1)
+                contador1--;
+            if (jogador2v[i][j] == 1)
+                contador2--;
+        }
+    }
+
+    printf("Falta %d alvos para voce ganhar!\n\n", contador2);
+    printf("Falta %d alvos para o computador ganhar!\n\n", contador1);
+    system("pause");
+
+    if(contador1 <= 0)
+    {
+        printf("O computador ganhou!\n\n");
+        system("pause");
+        exit(0);
+    }
+
+    if(contador2 <= 0)
+    {
+        printf("Jogador 1 ganhou!\n\n");
+        system("pause");
+        exit(0);
+    }
+
+
 }

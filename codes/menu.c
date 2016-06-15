@@ -128,8 +128,8 @@ int main()
                                 jogador2v[tirox][tiroy] = 1;
                                 imprimetabuleiro(jogador1v, jogador2v, id1, id2);
                                 printf("Voce acertou! Jogue novamente\n\n");
-                                //printf("Falta %d alvos\n\n", contador2); //errado, pois ta contando embaixo
                                 system("pause");
+                                conta_navios(jogador1v, jogador2v, contador1, contador2);
                             }
 
                             else //passa a vez para IA
@@ -142,40 +142,10 @@ int main()
                             }
 
 
-                        //================TESTA QUANTIDADE DE NAVIOS===========================
-                            contador1 = contador2 = 20;
+                            //conta_navios(jogador1v, jogador2v, contador1, contador2);
 
-                            for(i = 0; i < TAM; i++)
-                            {
-
-                                for(j = 0; j < TAM; j++)
-                                {
-                                    if (jogador1v[i][j] == 1)
-                                        contador1--;
-                                    if (jogador2v[i][j] == 1)
-                                        contador2--;
-                                }
-                            }
-
-                            printf("Falta %d alvos para voce ganhar!\n\n", contador2);
-                            system("pause");
-
-
-                            if(contador1 <= 0)
-                            {
-                                printf("Jogador 2 ganhou!\n\n");
-                                system("pause");
-                                exit(0);
-                                break;
-                            }
-
-                            if(contador2 <= 0)
-                            {
-                                printf("Jogador 1 ganhou!\n\n");
-                                system("pause");
-                                exit(0);
-                                break;
-                            }
+                            //printf("Falta %d alvos para voce ganhar!\n\n", contador2);
+                            //system("pause");
 
                         }while(acertou == 1);
 
@@ -201,6 +171,7 @@ int main()
                                 imprimetabuleiro(jogador1v, jogador2v, id1, id2);
                                 printf("O computador acertou!\n\n");
                                 system("pause");
+                                conta_navios(jogador1v, jogador2v, contador1, contador2);
                             }
 
                             else
@@ -212,37 +183,8 @@ int main()
                                 system("pause");
                             }
 
-                            //================TESTA QUANTIDADE DE NAVIOS===========================
-                            contador1 = contador2 = 20;
 
-                            for(i = 0; i < TAM; i++)
-                            {
-
-                                for(j = 0; j < TAM; j++)
-                                {
-                                    if (jogador1v[i][j] == 1)
-                                        contador1--;
-                                    if (jogador2v[i][j] == 1)
-                                        contador2--;
-                                }
-                            }
-
-
-                            if(contador1 <= 0)
-                            {
-                                printf("Jogador 2 ganhou!\n\n");
-                                system("pause");
-                                exit(0);
-                                break;
-                            }
-
-                            if(contador2 <= 0)
-                            {
-                                printf("Jogador 1 ganhou!\n\n");
-                                system("pause");
-                                exit(0);
-                                break;
-                            }
+                            //conta_navios(jogador1v, jogador2v, contador1, contador2);
 
                         }while(acertou == 1);
 
