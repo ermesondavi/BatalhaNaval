@@ -196,6 +196,88 @@ void creditos() //creditos do jogo
 	printf("**Feito por Ermeson Davi**\n\n");
 }
 
+int tiro_jogador(int jogador1v[][TAM], int jogador2v [][TAM], int jogador2[][TAM], int acertou)
+{
+    int tirox, tiroy;
+    int contador1, contador2;
+    contador1 = contador2 = 20;
+
+
+    printf("Escolha uma coordenada\n");
+    scanf("%d %d", &tirox, &tiroy);
+
+
+    if(tirox < 0 || tirox > TAM-1 || tiroy < 0 || tiroy > TAM-1) //testa se as coordenadas sao validas
+    {
+        acertou = 1;
+        printf("Escolha coordenada valida\n\n");
+    }
+
+    else if(jogador2v[tirox][tiroy] == 2 || jogador2v[tirox][tiroy] == 1) //testa se ja atirou ou se tem barco neste local
+    {
+        acertou = 1;
+        printf("Atire onde voce ainda nao atirou\n\n");
+    }
+
+    else if(jogador2[tirox][tiroy] == 1) //coloca tiro no canto certo
+    {
+        acertou = 1;
+        jogador2v[tirox][tiroy] = 1;
+        imprimetabuleiro(jogador1v, jogador2v);
+        printf("Voce acertou! Jogue novamente\n\n");
+        system("pause");
+        conta_navios(jogador1v, jogador2v, contador1, contador2);
+    }
+
+    else //passa a vez para IA
+    {
+        acertou = 0;
+        jogador2v[tirox][tiroy] = 2;
+        imprimetabuleiro(jogador1v, jogador2v);
+        printf("Voce errou!\n\n");
+        system("pause");
+    }
+
+}
+
+
+int tiro_IA(int jogador1v[][TAM], int jogador2v [][TAM], int jogador1[][TAM], int acertou)
+{
+    int tirox, tiroy;
+    int contador1, contador2;
+    contador1 = contador2 = 20;
+
+    tirox = rand() % 15;
+    tiroy = rand() % 15;
+
+    if(tirox < 0 || tirox > TAM-1 || tiroy < 0 || tiroy > TAM-1) //testa se as coordenadas sao validas
+        acertou = 1;
+
+    else if(jogador1v[tirox][tiroy] == 2 || jogador1v[tirox][tiroy] == 1) //testa se ja atirou ou se tem barco neste local
+        acertou = 1;
+
+
+    else if(jogador1[tirox][tiroy] == 1)
+    {
+        acertou = 1;
+        jogador1v[tirox][tiroy] = 1;
+        imprimetabuleiro(jogador1v, jogador2v);
+        printf("O computador acertou!\n\n");
+        system("pause");
+        conta_navios(jogador1v, jogador2v, contador1, contador2);
+    }
+
+    else
+    {
+        acertou = 0;
+        jogador1v[tirox][tiroy] = 2;
+        imprimetabuleiro(jogador1v, jogador2v);
+        printf("O computador errou!\n\n");
+        system("pause");
+    }
+
+    return acertou;
+}
 
 void conta_navios(int jogador1v[][TAM], int jogador2v[][TAM], int contador1, int contador2)
 {
