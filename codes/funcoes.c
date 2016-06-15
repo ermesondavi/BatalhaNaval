@@ -1,5 +1,49 @@
 #include<stdio.h>
+#include <stdlib.h>
+#include <time.h>
 #include "funcoes.h"
+
+//srand(time(NULL));
+
+void aloca_ale(int jogador2[][TAM])
+{
+    srand(time(NULL));
+    int i, posx, posy, randomico,  resultado, tamanho = 1;
+    char direcao;
+
+    for(i = 1; i < 11; i++)
+    {
+
+        do
+        {
+            posx = rand() % 15;
+            posy = rand() % 15;
+            randomico = rand() % 4;
+
+            switch(i) //muda tamanho
+            {
+                case 1: tamanho = 1; break;
+                case 5: tamanho = 2; break;
+                case 8: tamanho = 3; break;
+                case 10: tamanho = 4; break;
+            }
+
+            switch (randomico)
+            {
+                case 0: direcao = 'N' ; break;
+                case 1: direcao = 'S' ; break;
+                case 2: direcao = 'L' ; break;
+                case 3: direcao = 'O' ; break;
+            }
+
+        }while(posx < 0 && posx > TAM-1 || posy < 0 && posy > TAM-1 || direcao != 'N' && direcao != 'S' && direcao != 'L' && direcao != 'O');
+
+        resultado = aloca_navio(jogador2, tamanho, posx, posy, direcao);
+
+        if(resultado != 0)
+                i--;
+    }
+}
 
 int aloca_navio(int jogador1[][TAM], int tam, int x, int y, char direcao) //aloca os navios nas posicoes desejadas
 {
@@ -60,11 +104,11 @@ void imprimenum() //imprime numeros no inicio do tabuleiro
 	printf("\n");
 }
 
-void imprimetabuleiro(int jogador1[][TAM], int jogador2[][TAM], int id1, int id2) //imprime o tabuleiro dos 2 jogadores
+void imprimetabuleiro(int jogador1[][TAM], int jogador2[][TAM]) //imprime o tabuleiro dos 2 jogadores
 {
 	int i, j;
 
-	printf("\t* * * * *  J O G A D O R %d  * * * * * \n\n", id1); //imprime o nome da malha
+	printf("\t* * * * *  J O G A D O R * * * * * \n\n"); //imprime o nome da malha
 	printf("     ");
 
 	imprimenum();
@@ -87,7 +131,7 @@ void imprimetabuleiro(int jogador1[][TAM], int jogador2[][TAM], int id1, int id2
 	printf("\n\n");
 
 
-	printf("\t~ ~ ~ ~ ~ J O G A D O R %d ~ ~ ~ ~ ~ \n\n", id2); //imprime o nome da malha
+	printf("\t~ ~ ~ ~ ~ C O M P U T A D O R ~ ~ ~ ~ ~ \n\n"); //imprime o nome da malha
 	printf("     ");
 
 	imprimenum();
@@ -118,7 +162,6 @@ void creditos() //creditos do jogo
 void conta_navios(int jogador1v[][TAM], int jogador2v[][TAM], int contador1, int contador2)
 {
     int i, j;
-    //*ptr_contador1 = *ptr_contador2 = 20; printf("%d ", jogador2v[i][j]),
 
     for(i = 0; i < TAM; i++)
     {
@@ -148,6 +191,5 @@ void conta_navios(int jogador1v[][TAM], int jogador2v[][TAM], int contador1, int
         system("pause");
         exit(0);
     }
-
 
 }

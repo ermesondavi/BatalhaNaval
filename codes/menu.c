@@ -7,52 +7,17 @@
 int main()
 {
 	int opcao, i, j;
-	int id1 = 1, id2 = 2;
 	int jogador1[TAM][TAM] = {0}, jogador2[TAM][TAM] = {0}, jogador1v[TAM][TAM] = {0}, jogador2v[TAM][TAM] = {0};
     int resultado, randomico;
     int posx, posy;
     int tamanho = 1;
     char direcao, nome[20];
+    int alocacao;
+
     int acertou = 0, tirox, tiroy; //para poder atirar
     int contador1 = 20, contador2 = 20; // para contar os navios
 
-    srand(time(NULL));
-
-    //ALOCA ALEATORIAMENTE NAVIOS DO JOGADOR2
-    for(i = 1; i < 11; i++)
-    {
-
-        do
-        {
-            posx = rand() % 15;
-            posy = rand() % 15;
-            randomico = rand() % 4;
-
-            switch(i) //muda tamanho
-            {
-                case 1: tamanho = 1; break;
-                case 5: tamanho = 2; break;
-                case 8: tamanho = 3; break;
-                case 10: tamanho = 4; break;
-            }
-
-            switch (randomico)
-            {
-                case 0: direcao = 'N' ; break;
-                case 1: direcao = 'S' ; break;
-                case 2: direcao = 'L' ; break;
-                case 3: direcao = 'O' ; break;
-            }
-
-        }while(posx < 0 && posx > TAM-1 || posy < 0 && posy > TAM-1 || direcao != 'N' && direcao != 'S' && direcao != 'L' && direcao != 'O');
-
-        resultado = aloca_navio(jogador2, tamanho, posx, posy, direcao);
-
-        if(resultado != 0)
-                i--;
-
-    }
-
+    aloca_ale(jogador2);
 
 	//menu do jogo
 	do
@@ -63,6 +28,14 @@ int main()
 		switch(opcao)
 		{
 			case 1:
+
+            printf("Deseja alocar aleatoriamente? 1-sim 2-nao\n");
+            scanf("%d", &alocacao);
+
+            if(alocacao == 1)
+                aloca_ale(jogador1);
+            else
+            {
                     //ALOCA NAVIOS DO JOGADOR1
                     for(i = 1; i < 11; i++)
                     {
@@ -94,9 +67,9 @@ int main()
                             i--;
                         }
                     }
+            }
 
-                    imprimetabuleiro(jogador1v, jogador2v, id1, id2);
-
+            imprimetabuleiro(jogador1, jogador2);
 
 //=============================================LOOP PRINCIPAL DO JOGO===============================================//
 
@@ -116,7 +89,7 @@ int main()
                                 printf("Escolha coordenada valida\n\n");
                             }
 
-                            else if(jogador2v[tirox][tiroy] == 2 || jogador2v[tirox][tiroy] == 1) //testa se ja atirou neste local
+                            else if(jogador2v[tirox][tiroy] == 2 || jogador2v[tirox][tiroy] == 1) //testa se ja atirou ou se tem barco neste local
                             {
                                 acertou = 1;
                                 printf("Atire onde voce ainda nao atirou\n\n");
@@ -126,7 +99,7 @@ int main()
                             {
                                 acertou = 1;
                                 jogador2v[tirox][tiroy] = 1;
-                                imprimetabuleiro(jogador1v, jogador2v, id1, id2);
+                                imprimetabuleiro(jogador1v, jogador2v);
                                 printf("Voce acertou! Jogue novamente\n\n");
                                 system("pause");
                                 conta_navios(jogador1v, jogador2v, contador1, contador2);
@@ -136,21 +109,15 @@ int main()
                             {
                                 acertou = 0;
                                 jogador2v[tirox][tiroy] = 2;
-                                imprimetabuleiro(jogador1v, jogador2v, id1, id2);
+                                imprimetabuleiro(jogador1v, jogador2v);
                                 printf("Voce errou!\n\n");
                                 system("pause");
                             }
 
-
-                            //conta_navios(jogador1v, jogador2v, contador1, contador2);
-
-                            //printf("Falta %d alvos para voce ganhar!\n\n", contador2);
-                            //system("pause");
-
                         }while(acertou == 1);
 
 
-                        //determina coordenadas do tiro do jogador2
+                        //determina coordenadas do tiro do jogador2 // IA!!!!
                         do
                         {
                             tirox = rand() % 15;
@@ -160,7 +127,7 @@ int main()
                                 acertou = 1;
 
 
-                            else if(jogador1v[tirox][tiroy] == 2 || jogador1v[tirox][tiroy] == 1) //testa se ja atirou neste local
+                            else if(jogador1v[tirox][tiroy] == 2 || jogador1v[tirox][tiroy] == 1) //testa se ja atirou ou se tem barco neste local
                                 acertou = 1;
 
 
@@ -168,7 +135,7 @@ int main()
                             {
                                 acertou = 1;
                                 jogador1v[tirox][tiroy] = 1;
-                                imprimetabuleiro(jogador1v, jogador2v, id1, id2);
+                                imprimetabuleiro(jogador1v, jogador2v);
                                 printf("O computador acertou!\n\n");
                                 system("pause");
                                 conta_navios(jogador1v, jogador2v, contador1, contador2);
@@ -178,13 +145,10 @@ int main()
                             {
                                 acertou = 0;
                                 jogador1v[tirox][tiroy] = 2;
-                                imprimetabuleiro(jogador1v, jogador2v, id1, id2);
+                                imprimetabuleiro(jogador1v, jogador2v);
                                 printf("O computador errou!\n\n");
                                 system("pause");
                             }
-
-
-                            //conta_navios(jogador1v, jogador2v, contador1, contador2);
 
                         }while(acertou == 1);
 
