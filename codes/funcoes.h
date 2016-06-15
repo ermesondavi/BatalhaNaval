@@ -1,4 +1,4 @@
-#include<stdio.h>
+#include <stdio.h>
 #define TAM 15
 
 int aloca_navio(int jogador1[][TAM], int tam, int x, int y, char direcao); //aloca os navios nas posicoes desejadas

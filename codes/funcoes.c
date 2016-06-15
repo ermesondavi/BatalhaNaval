@@ -55,7 +55,7 @@ void imprimenum() //imprime numeros no inicio do tabuleiro
 	int i;
 	printf(" ");
 	for(i = 0; i < TAM; i++)
-        printf("%02d ", i + 1);
+        printf("%02d ", i);
 	printf("\n");
 }
 
@@ -71,7 +71,7 @@ void imprimetabuleiro(int jogador1[][TAM], int jogador2[][TAM], int id1, int id2
 
 	for(i = 0; i < TAM; i++) //percorre um caminho 15X15
 	{
-		printf("%02d ", i + 1); //imprime a númeração ao lado do tabuleiro
+		printf("%02d ", i); //imprime a númeração ao lado do tabuleiro
 
 		printf("| "); //imprime traço no inicio da linha
 
@@ -94,7 +94,7 @@ void imprimetabuleiro(int jogador1[][TAM], int jogador2[][TAM], int id1, int id2
 
 	for(i = 0; i < TAM; i++) //percorre um caminho 15X15
 	{
-		printf("%02d ", i + 1); //imprime a númeração ao lado do tabuleiro
+		printf("%02d ", i); //imprime a númeração ao lado do tabuleiro
 
 		printf("| "); //imprime traço no inicio da linha
 
