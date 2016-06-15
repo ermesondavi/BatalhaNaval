@@ -2,6 +2,7 @@
 #define TAM 15
 
 void aloca_ale(int jogador2[][TAM]);
+void aloca_pedido(int jogador1[][TAM]);
 int aloca_navio(int jogador1[][TAM], int tam, int x, int y, char direcao); //aloca os navios nas posicoes desejadas
 void imprimelinha(); //imprime as linhas no começo ou fim do tabuleiro
 void imprimenum(); //imprime numeros no inicio do tabuleiro

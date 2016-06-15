@@ -1,7 +1,5 @@
 #include <stdio.h>
 #include <string.h>
-#include <stdlib.h>
-#include <time.h>
 #include "funcoes.c"
 
 int main()
@@ -29,47 +27,15 @@ int main()
 		{
 			case 1:
 
-            printf("Deseja alocar aleatoriamente? 1-sim 2-nao\n");
-            scanf("%d", &alocacao);
+                printf("Deseja alocar aleatoriamente? 1-sim 2-nao\n");
+                scanf("%d", &alocacao);
 
-            if(alocacao == 1)
-                aloca_ale(jogador1);
-            else
-            {
-                    //ALOCA NAVIOS DO JOGADOR1
-                    for(i = 1; i < 11; i++)
-                    {
-                        //muda nomes e tamanho
-                        switch(i)
-                        {
-                            case 1: strcpy(nome, "Submarino"), tamanho = 1; break;
-                            case 5: strcpy(nome, "Corveta"), tamanho = 2; break;
-                            case 8: strcpy(nome, "Fragata"), tamanho = 3; break;
-                            case 10: strcpy(nome, "Porta-Aviao"), tamanho = 4; break;
-                        }
+                if(alocacao == 1)
+                    aloca_ale(jogador1);
+                else
+                    aloca_pedido(jogador1);
 
-                        do
-                        {
-                            printf("Escolha posicao para %s %d\n", nome, i);
-                            scanf("%d %d", &posx, &posy);
-                            printf("Escolha uma direcao\n");
-                            scanf(" %c", &direcao);
-
-                        } while (posx < 0 && posx > TAM-1 || posy < 0 && posy > TAM-1 || direcao != 'N' && direcao != 'S' && direcao != 'L' && direcao != 'O');
-
-                        resultado = aloca_navio(jogador1, tamanho, posx, posy, direcao);
-
-                        if(resultado == 0)
-                                printf("Deu certo %d\n", i);
-                        else
-                        {
-                            printf("Digite algo valido%d\n", i);
-                            i--;
-                        }
-                    }
-            }
-
-            imprimetabuleiro(jogador1, jogador2);
+                imprimetabuleiro(jogador1, jogador2);
 
 //=============================================LOOP PRINCIPAL DO JOGO===============================================//
 

@@ -1,9 +1,8 @@
 #include<stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 #include "funcoes.h"
-
-//srand(time(NULL));
 
 void aloca_ale(int jogador2[][TAM])
 {
@@ -44,6 +43,45 @@ void aloca_ale(int jogador2[][TAM])
                 i--;
     }
 }
+
+void aloca_pedido(int jogador1[][TAM])
+{
+    srand(time(NULL));
+    int i, posx, posy, randomico,  resultado, tamanho = 1;
+    char direcao, nome[20];
+
+    for(i = 1; i < 11; i++)
+    {
+        //muda nomes e tamanho
+        switch(i)
+        {
+            case 1: strcpy(nome, "Submarino"), tamanho = 1; break;
+            case 5: strcpy(nome, "Corveta"), tamanho = 2; break;
+            case 8: strcpy(nome, "Fragata"), tamanho = 3; break;
+            case 10: strcpy(nome, "Porta-Aviao"), tamanho = 4; break;
+        }
+
+        do
+        {
+            printf("Escolha posicao para %s %d\n", nome, i);
+            scanf("%d %d", &posx, &posy);
+            printf("Escolha uma direcao\n");
+            scanf(" %c", &direcao);
+
+        } while (posx < 0 && posx > TAM-1 || posy < 0 && posy > TAM-1 || direcao != 'N' && direcao != 'S' && direcao != 'L' && direcao != 'O');
+
+        resultado = aloca_navio(jogador1, tamanho, posx, posy, direcao);
+
+        if(resultado == 0)
+            printf("Deu certo %d\n", i);
+        else
+        {
+            printf("Digite algo valido%d\n", i);
+            i--;
+        }
+    }
+}
+
 
 int aloca_navio(int jogador1[][TAM], int tam, int x, int y, char direcao) //aloca os navios nas posicoes desejadas
 {
