@@ -9,7 +9,10 @@
 void aloca_ale(int jogador2[][TAM]) //aloca navios aleatoriamente
 {
     srand(time(NULL));
-    int i, posx, posy, randomico,  resultado, tamanho = 1;
+    int i, posx, posy, randomico,  resultado;
+    //int tamanho = 1;
+    Navios tamnavio = subs;
+
     char direcao;
 
     for(i = 1; i < 11; i++)
@@ -23,10 +26,10 @@ void aloca_ale(int jogador2[][TAM]) //aloca navios aleatoriamente
 
             switch(i) //muda tamanho dos navios
             {
-                case 1: tamanho = 1; break;
-                case 5: tamanho = 2; break;
-                case 8: tamanho = 3; break;
-                case 10: tamanho = 4; break;
+                case 1: tamnavio = subs; break;
+                case 5: tamnavio = corv; break;
+                case 8: tamnavio = frag; break;
+                case 10: tamnavio = porta ; break;
             }
 
             switch (randomico) //muda as direcoes dos navios
@@ -39,7 +42,7 @@ void aloca_ale(int jogador2[][TAM]) //aloca navios aleatoriamente
 
         }while(posx < 0 && posx > TAM-1 || posy < 0 && posy > TAM-1 || direcao != 'N' && direcao != 'S' && direcao != 'L' && direcao != 'O');
 
-        resultado = aloca_navio(jogador2, tamanho, posx, posy, direcao); //chama funcao para colocar os navios nos seus lugares
+        resultado = aloca_navio(jogador2, tamnavio, posx, posy, direcao); //chama funcao para colocar os navios nos seus lugares
 
         if(resultado != 0) //se nao deu certo, ele tente alocar novamente
                 i--;
@@ -104,7 +107,7 @@ int aloca_navio(int jogador1[][TAM], int tam, int x, int y, char direcao) //aloc
 
     for(i = 0; i<tam; i++)
     {
-        if(jogador1[x][y] != 0 || x > TAM-1 || x < 0 ||  y > TAM-1 || y < 0 )
+        if(jogador1[x][y] != 0 || jogador1[x+1][y] != 0 || jogador1[x+1][y+1] != 0 || jogador1[x][y+1] != 0 || jogador1[x-1][y+1] != 0 || jogador1[x-1][y] != 0 || jogador1[x-1][y-1] != 0 || jogador1[x][y-1] != 0 || jogador1[x+1][y-1] != 0 || x > TAM-1 || x < 0 ||  y > TAM-1 || y < 0 )
             ok = 1;
 
         x+=modx;

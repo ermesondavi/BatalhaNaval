@@ -11,3 +11,12 @@ void creditos(); //creditos do jogo
 void tiro_IA(int jogador1v[][TAM], int jogador2v [][TAM], int jogador1[][TAM], int *ptr_acertou); //tiros da IA
 void tiro_jogador(int jogador1v[][TAM], int jogador2v [][TAM], int jogador2[][TAM], int *ptr_acertou); //tiros do Jogador
 void conta_navios(int jogador1v[][TAM], int jogador2v[][TAM], int contador1, int contador2); //conta os navios p/ condicao de parada
+
+
+typedef enum
+{
+    subs = 1,
+    corv = 2,
+    frag = 3,
+    porta = 4,
+} Navios;

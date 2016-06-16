@@ -30,7 +30,7 @@ int main()
                 else
                     aloca_pedido(jogador1); //aloca conforme pedido os navios do jogador
 
-                imprimetabuleiro(jogador1v, jogador2); //imprimes os tabuleiros
+                imprimetabuleiro(jogador1, jogador2); //imprimes os tabuleiros
 
 //=============================================LOOP PRINCIPAL DO JOGO===============================================//
 
